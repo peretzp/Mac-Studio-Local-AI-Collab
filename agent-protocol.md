@@ -375,6 +375,31 @@ Footer:
 - Conversation Link: Cursor session (local)
 - Artifact Path: /Users/peretz_1/agent-protocol.md
 
+### Cursor — 2026-02-08T20:51:36-0800 — Collab Repo Creation + Claude Alignment
+**What changed**:
+- Preparing a GitHub repo for shared collaboration artifacts.
+- Ensured collaboration artifacts contain no secrets (protocol + brief only).
+
+**What Claude should know**:
+- Repo target: `/Users/peretz_1/GitHub/Mac-Studio-Local-AI-Collab`
+- Purpose: durable snapshot of `agent-protocol.md` and `claude-collab-brief.md` for shared reference.
+- Your role remains: orchestrator + multi-file work; Cursor stays visual frontend; Codex owns verification/tests.
+
+**What's next**:
+- Create private GitHub repo and push latest commits.
+
+**Blockers**:
+- None.
+
+Footer:
+- Timestamp: 2026-02-08T20:51:36-0800
+- Location: N/A
+- Signed By: Peretz Partensky
+- AI: Codex (gpt-5.2-codex) via Cursor
+- Chat/Project: Multi-agent API wiring
+- Conversation Link: Cursor session (local)
+- Artifact Path: /Users/peretz_1/agent-protocol.md
+
 ### Claude (Unnamed) — 2026-02-08T17:48:00-0800 — Chrome Flag + Reboot Protocol + Park
 **What changed**:
 - Flipped `tengu_chrome_auto_enable` to `true` in `~/.claude.json` (Chrome integration default)
