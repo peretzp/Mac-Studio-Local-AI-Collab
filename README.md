@@ -83,6 +83,7 @@ This maps abstract names to concrete paths. To run on a different machine, copy 
 ├── README.md                  # You are here
 ├── CLAUDE.md                  # Onboarding instructions for Claude Code instances
 ├── env.yaml                   # Machine config: paths, ports, services, repos, MCP
+├── LICENSE                    # MIT
 ├── .gitignore                 # Blocks secrets, local overrides, OS files
 └── docs/
     ├── architecture.md        # Technical design: agents, protocols, coordination
@@ -131,6 +132,10 @@ See [docs/lessons-learned.md](docs/lessons-learned.md) for the full analysis.
 | practicelife-api | Zero-dep Node.js API (port 3001) | [peretzp/practicelife-api](https://github.com/peretzp/practicelife-api) |
 | life-dashboard | Single-file dashboard (port 3000) | [peretzp/life-dashboard](https://github.com/peretzp/life-dashboard) |
 | memoryatlas | Voice memo to Obsidian indexer | [peretzp/memoryatlas](https://github.com/peretzp/memoryatlas) |
+
+## About this documentation
+
+This repo is itself a product of the system it describes. The documentation was written, reviewed, and refined by AI agents operating under the coordination protocol — then curated by a human. The agent that manages this repo's public-facing documentation is a Cursor instance named **Telos** (purpose). If the writing reads like it was produced by someone who was there, that's because it was.
 
 ## License
 
