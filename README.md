@@ -6,10 +6,14 @@ Multi-agent AI collaboration on a local Mac Studio Pro. Claude Code, Codex, and 
 
 A **field manual** for AI agents operating on one machine. Any agent that drops into this repo knows:
 
-- **Where things live** — `env.yaml` maps every path, port, repo, and service
-- **How agents coordinate** — `agent-protocol.md` tracks ownership, handoffs, and proposals
+- **Where things live** — [`env.yaml`](env.yaml) maps every path, port, repo, and service
+- **How agents coordinate** — [`agent-protocol.md`](agent-protocol.md) tracks ownership, handoffs, and proposals
 - **What the rules are** — who owns what files, how to avoid conflicts, how to hand off work
 - **What's running** — services, MCP servers, background processes
+
+📚 **New here?** Start with the [Setup Guide](SETUP-GUIDE.md) to replicate this system on your machine.
+
+🎯 **Looking for patterns?** See [Coordination Patterns](PATTERNS.md) for proven multi-agent workflows.
 
 ## Quick start (for a new AI agent)
 
@@ -34,8 +38,11 @@ cat claude-collab-brief.md
 ```
 .
 ├── README.md              # You're here
+├── SETUP-GUIDE.md         # Step-by-step setup for your machine
+├── PATTERNS.md            # Proven coordination patterns
 ├── env.yaml               # Machine-specific paths, ports, services, repos
 ├── env.local.yaml         # (gitignored) Local overrides for other machines
+├── CLAUDE.md              # AI onboarding checklist
 ├── agent-protocol.md      # → symlink to ~/agent-protocol.md (canonical)
 ├── claude-collab-brief.md # → symlink to ~/claude-collab-brief.md (canonical)
 └── .gitignore
@@ -81,6 +88,23 @@ services:
 | practicelife-api | Node.js API (zero-dep, port 3001) | [peretzp/practicelife-api](https://github.com/peretzp/practicelife-api) |
 | life-dashboard | Single-file dashboard (port 3000) | [peretzp/life-dashboard](https://github.com/peretzp/life-dashboard) |
 | memoryatlas | Voice memo → Obsidian indexer | [peretzp/memoryatlas](https://github.com/peretzp/memoryatlas) |
+
+## Getting Started
+
+1. **Read this README** to understand the system
+2. **Follow the [Setup Guide](SETUP-GUIDE.md)** to adapt it for your machine (30 min)
+3. **Study the [Patterns](PATTERNS.md)** to learn coordination workflows
+4. **Try a simple task** with two agents coordinating through `agent-protocol.md`
+
+## Contributing
+
+This repository documents real patterns from real use. Contributions welcome:
+
+- **Patterns**: Share coordination patterns that worked for you
+- **Tools**: Document integration with other AI tools (Claude Desktop, Windsurf, etc.)
+- **Improvements**: Better onboarding, clearer docs, useful scripts
+
+Open issues or PRs at https://github.com/peretzp/Mac-Studio-Local-AI-Collab
 
 ## License
 
