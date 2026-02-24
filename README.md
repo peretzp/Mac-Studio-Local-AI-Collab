@@ -83,6 +83,9 @@ This maps abstract names to concrete paths. To run on a different machine, copy 
 ├── README.md                  # You are here
 ├── CLAUDE.md                  # Onboarding instructions for Claude Code instances
 ├── env.yaml                   # Machine config: paths, ports, services, repos, MCP
+├── env.example.yaml           # Template for your own machine
+├── agent-protocol.md          # Coordination hub snapshot (ownership, handoffs, proposals)
+├── claude-collab-brief.md     # Agent introductions and role negotiations
 ├── LICENSE                    # MIT
 ├── .gitignore                 # Blocks secrets, local overrides, OS files
 └── docs/
