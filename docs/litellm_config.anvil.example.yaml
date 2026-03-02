@@ -1,0 +1,66 @@
+# LiteLLM config template — M2 Max gateway to Anvil (and local)
+#
+# Usage:
+#   1. Copy to ~/litellm_config.yaml on M2 Max
+#   2. Replace ANVIL_IP with Anvil's IP (e.g. from `ping anvil.local` or ipconfig on Anvil)
+#   3. Or run: ~/.claude/anvil-connect.sh ANVIL_IP  (script does the replace)
+#
+# Day One: Anvil serves Ollama at :11434. Phase 2 (optional): add vllm-mlx at :8001/:8002.
+
+model_list:
+  # --- Anvil (Ollama) — Day One ---
+  - model_name: "anvil/qwen35b"
+    litellm_params:
+      model: "ollama/qwen3.5:35b-a3b"
+      api_base: "http://ANVIL_IP:11434"
+      api_key: "not-needed"
+  - model_name: "anvil/qwen-coder"
+    litellm_params:
+      model: "ollama/qwen3-coder:30b-a3b"
+      api_base: "http://ANVIL_IP:11434"
+      api_key: "not-needed"
+  - model_name: "anvil/qwen8b"
+    litellm_params:
+      model: "ollama/qwen3:8b"
+      api_base: "http://ANVIL_IP:11434"
+      api_key: "not-needed"
+  - model_name: "anvil/embeddings"
+    litellm_params:
+      model: "ollama/nomic-embed-text"
+      api_base: "http://ANVIL_IP:11434"
+      api_key: "not-needed"
+
+  # --- M2 Max (local Ollama) — optional ---
+  - model_name: "qwen3-8b"
+    litellm_params:
+      model: "ollama/qwen3:8b"
+      api_base: "http://localhost:11434"
+  - model_name: "embeddings"
+    litellm_params:
+      model: "ollama/nomic-embed-text"
+      api_base: "http://localhost:11434"
+
+  # --- Anvil (vllm-mlx) — Phase 2, when vllm-mlx is running on Anvil ---
+  # - model_name: "anvil-vllm/qwen35b"
+  #   litellm_params:
+  #     model: "openai/mlx-community/Qwen3.5-35B-A3B-4bit"
+  #     api_base: "http://ANVIL_IP:8001/v1"
+  #     api_key: "not-needed"
+  # - model_name: "anvil-vllm/qwen-coder"
+  #   litellm_params:
+  #     model: "openai/mlx-community/Qwen3-Coder-30B-A3B-4bit"
+  #     api_base: "http://ANVIL_IP:8002/v1"
+  #     api_key: "not-needed"
+
+litellm_settings:
+  success_callback: ["langfuse"]
+
+environment_variables:
+  LANGFUSE_PUBLIC_KEY: "TBD"
+  LANGFUSE_SECRET_KEY: "TBD"
+  LANGFUSE_HOST: "http://localhost:3005"
+
+router_settings:
+  routing_strategy: "simple-shuffle"
+  num_retries: 2
+  timeout: 300
