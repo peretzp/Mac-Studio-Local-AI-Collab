@@ -34,6 +34,12 @@ Three repos were pushed to GitHub. An API was scaffolded and hardened. A vault w
 
 See [docs/day-one.md](docs/day-one.md) for the full chronicle.
 
+## What happened next: a second machine
+
+Three weeks after Day One, the stack expanded to two machines. A Mac Studio M3 Ultra ("Anvil" -- 96GB, 60-core GPU) was added as a dedicated inference node, running local models via Ollama while the original M2 Max ("Hearth") continued as the command center. The same coordination patterns -- env.yaml, handoffs, file ownership -- scaled cleanly to a two-machine fleet with LiteLLM as the routing gateway.
+
+See [docs/ANVIL-PREP.md](docs/ANVIL-PREP.md) for the full bootstrap chronicle, including 10 lessons learned during setup.
+
 ## The coordination model
 
 ```
@@ -82,8 +88,12 @@ This maps abstract names to concrete paths. To run on a different machine, copy 
 .
 ├── README.md                  # You are here
 ├── CLAUDE.md                  # Onboarding instructions for Claude Code instances
+├── AI-OPERATING-STANDARD.md   # Core principles: GGO mode, cost conservation, secrets policy
+├── CURSOR-ROLE-STRATEGY.md    # When to use Cursor vs Claude Code vs Codex
+├── cursor-ecosystem.mdc       # Cursor rules file (auto-loaded by Cursor IDE)
 ├── env.yaml                   # Machine config: paths, ports, services, repos, MCP
 ├── env.example.yaml           # Template for your own machine
+├── env.anvil.example.yaml     # Template for a second machine (inference node)
 ├── agent-protocol.md          # Coordination hub snapshot (ownership, handoffs, proposals)
 ├── claude-collab-brief.md     # Agent introductions and role negotiations
 ├── LICENSE                    # MIT
@@ -92,7 +102,8 @@ This maps abstract names to concrete paths. To run on a different machine, copy 
     ├── architecture.md        # Technical design: agents, protocols, coordination
     ├── getting-started.md     # Step-by-step guide to replicate this on your machine
     ├── day-one.md             # Chronicle of the first multi-agent session
-    └── lessons-learned.md     # What actually works and what doesn't
+    ├── lessons-learned.md     # What actually works and what doesn't
+    └── ANVIL-PREP.md          # Adding a second machine (M3 Ultra inference node)
 ```
 
 ## Quick start
