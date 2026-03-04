@@ -2,7 +2,7 @@
 
 **One place to look.** Updated by agents and you. Read this first; then drill into TASKS.md or agent-protocol.md if you need detail.
 
-*Last updated: 2026-03-01 (Cursor — Anvil check, Cursor tips, repo stewards)*
+*Last updated: 2026-03-01 (Cursor — Anvil check, Cursor tips, repo stewards; Cursor parked for reboot)*
 
 ---
 
