@@ -7,13 +7,17 @@
 
 ## The Pattern
 
-Each Slack channel maps to a **machine + agent + credential** triple:
+Each Slack channel maps to a **user + agent + machine** triple:
 
 ```
-#peretz-claude-code-behemoth     → Claude Code on Mac Studio (peretz auth)
-#peretz-gemini-cli-ember         → Gemini CLI on Ember machine (peretz auth)
-#boris-claude-web-laptop         → Claude web on Boris's laptop
+#peretz-claude-mac-studio        → Peretz's Claude Code on Mac Studio Pro
+#peretz-codex-mac-studio         → Peretz's Codex CLI on Mac Studio Pro
+#boris-claude-behemoth           → Boris's Claude on behemoth (Framingham)
 ```
+
+Machines have short aliases (see `env.yaml > slack.machines`):
+- `mac_studio` — Peretz's Mac Studio Pro (this repo's host machine)
+- `behemoth` — Boris's machine in Framingham
 
 This creates a **control panel** effect: you can see the puppet strings, observe agent chatter, and trace coordination in real time.
 
@@ -32,10 +36,10 @@ This creates a **control panel** effect: you can see the puppet strings, observe
 ```
 
 Examples:
-- `#peretz-claude-behemoth` - Peretz's Claude Code on Mac Studio
-- `#peretz-codex-behemoth` - Peretz's Codex CLI on Mac Studio
-- `#boris-claude-laptop` - Boris's Claude on laptop
-- `#shared-care-coord` - Cross-agent care coordination channel
+- `#peretz-claude-mac-studio` - Peretz's Claude Code on Mac Studio Pro
+- `#peretz-codex-mac-studio` - Peretz's Codex CLI on Mac Studio Pro
+- `#boris-claude-behemoth` - Boris's Claude on behemoth (Framingham)
+- `#all-par-10-sky` - Cross-agent care coordination channel
 
 ## Message Types
 
