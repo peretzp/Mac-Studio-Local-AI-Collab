@@ -107,3 +107,6 @@ Full audit of Cursor config. Created CURSOR-ROLE-STRATEGY.md, .cursor/mcp.json, 
 
 ### Peretz -- Vision Statement
 Agents should: help him live his purpose, enhance the dashboard, unbundle workflows into standalone apps, open source, and teach him how to use multi-agent collaboration effectively.
+
+### The Signalman (Claude Code / Opus 4.8) — Alert Signal Doctrine
+Authored `docs/ALERT-SIGNAL-DOCTRINE.md`: an edge-triggered "Fire & Wire" doctrine to maximize signal-to-noise across the Boris↔Peretz workstreams. Diagnosed live `#health-digest` noise (level-triggered dumps, sticky 401/403 re-alerting, real edges like `note_files` drowning) and specified a severity ladder, dedup/debounce, digest rollups, and token-mindful summarization (no LLM on steady state). What's next: build the webhook poster (per `SLACK-AGENT-COORDINATION.md`) to enforce the compliance checklist. Blockers: none.
