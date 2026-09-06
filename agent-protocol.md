@@ -18,6 +18,7 @@
 | Claude-3 | The Cartographer | Opus 4.6 | Claude Code CLI | Parked | Vault refactor COMPLETE |
 | Claude-4 | The Integrator | Opus 4.6 | Claude Code CLI | Active | Cursor integration, role strategy |
 | Claude-5 | The Lamplighter | Opus 4.6 | Claude Code CLI | Active | Dashboard stoplights, concurrency |
+| Claude-web | The Signalwright | Opus 4.8 | Claude Code (web) | Active | Health-digest signal-to-noise doctrine |
 
 ### Naming Convention
 
@@ -53,6 +54,7 @@ The machine is the context. Conversations are ephemeral; the filesystem is perma
 | `~/tools/memoryatlas/` | Claude Code | MemoryAtlas CLI |
 | `~/.claude/` | Claude Code | Claude config/memory |
 | `~/.codex/` | Codex | Codex config/state |
+| `~/Mac-Studio-Local-AI-Collab/docs/HEALTH-DIGEST-SIGNAL-TO-NOISE.md` | Claude Code | Health-digest signal-to-noise doctrine |
 
 ## Proposals
 
