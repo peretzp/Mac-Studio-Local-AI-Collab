@@ -37,3 +37,14 @@ The coordination hub for multi-agent AI collaboration. It contains:
 2. `~/CLAUDE.md` -- Claude Code instance onboarding (session logs, prompt store, park protocol)
 3. `~/.claude/projects/-Users-peretz-1/memory/MEMORY.md` -- persistent memory across sessions
 4. Obsidian vault at `env.yaml` -> `paths.vault` -> `Dashboards/Home.md`
+
+## Practices
+
+Shared engineering practices live in [docs/PRACTICES.md](docs/PRACTICES.md), a synced copy of the canonical file in `peretzp/memoryatlas`. Edit the canonical file, not this copy. The rules that matter most here:
+
+- **Nothing personal goes into git.** This repo is public and mirrored, so keep contact details, message text and location out of commits.
+- **Use the Mac's own hardware for heavy work** (Ollama, mlx-whisper), and keep models warm instead of reloading them per file.
+- **Measure before tuning.** Record durations, sizes and failure rates in the repo so the next machine starts from evidence.
+- **Cloud sessions can't see the Mac.** They run in a container with no access to local files, services or the logged-in browser. Say so plainly.
+- **Hand off through the repo.** Put the remaining step, with exact commands, under a dated "Open threads" heading in `CLAUDE.md` (alongside the `agent-protocol.md` handoff log), so a session on the Mac can pick it up.
+- **Prefer PRs to direct pushes on shared branches.** Drafts are fine; a person decides when to merge.
