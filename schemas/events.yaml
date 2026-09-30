@@ -1,0 +1,142 @@
+# Event Schema for Life-as-CI
+#
+# These event types form the spine of fleet-wide coordination.
+# Each machine logs events locally; Slack mirrors for visibility;
+# aggregation reveals what patterns succeed across the fleet.
+#
+# Usage: agents emit events → local log + slack channel → outcome annotation → learning
+
+version: "1.0"
+
+# ─────────────────────────────────────────────────────────────
+# Common fields (all events include these)
+# ─────────────────────────────────────────────────────────────
+
+common:
+  id: string           # UUID for this event
+  timestamp: string    # ISO 8601
+  machine: string      # alias from env.yaml (mac_studio, behemoth, etc.)
+  user: string         # human operator (peretz, boris)
+  agent: string        # agent name (claude, codex, cursor)
+  session_id: string   # links events within one agent session
+
+# ─────────────────────────────────────────────────────────────
+# Event Types
+# ─────────────────────────────────────────────────────────────
+
+events:
+
+  # Agent lifecycle
+  STATUS:
+    description: "Agent startup, focus change, or shutdown"
+    fields:
+      state: enum [active, parked, shutdown]
+      focus: string          # what the agent is working on
+      files: array[string]   # files currently owned/edited
+
+  # Context handoffs between agents
+  HANDOFF:
+    description: "Agent passes work to another agent"
+    fields:
+      from_agent: string
+      to_agent: string
+      artifact: string       # file or resource being handed off
+      summary: string        # what was done, what's next
+      blockers: array[string]
+
+  # Proposals requiring human approval
+  PROPOSAL:
+    description: "Agent proposes an action that needs human sign-off"
+    fields:
+      action: string         # what the agent wants to do
+      rationale: string      # why
+      risk: enum [low, medium, high]
+      approved: boolean      # filled in after human decision
+      approved_by: string
+      approved_at: string
+
+  # Care coordination events (Boris's treatment)
+  CARE:
+    description: "Health care coordination event"
+    fields:
+      type: enum [appointment, infusion, test, request, note]
+      date: string           # scheduled date if applicable
+      location: string
+      provider: string       # doctor, facility
+      notes: string
+      action_items: array[string]
+
+  # Outcome annotation (the learning signal)
+  OUTCOME:
+    description: "Human annotates whether something worked"
+    fields:
+      ref_event_id: string   # which event this annotates
+      result: enum [success, partial, failure, unknown]
+      notes: string          # what happened, why
+      learnings: string      # what to do differently next time
+
+  # System/infrastructure events
+  SYSTEM:
+    description: "Machine or service lifecycle"
+    fields:
+      type: enum [boot, shutdown, update, error, sync]
+      service: string        # which service (api, dashboard, slack)
+      details: string
+
+# ─────────────────────────────────────────────────────────────
+# Fleet Aggregation
+# ─────────────────────────────────────────────────────────────
+
+aggregation:
+  description: |
+    Events flow: local log → slack channel → central store.
+    Central store enables queries like:
+    - "What handoff patterns succeed most often?"
+    - "Which care requests get approved fastest?"
+    - "What proposals get rejected and why?"
+
+  local_log: "~/.claude/events.jsonl"      # per-machine
+  slack_channel: "mapped via env.yaml"     # visibility layer
+  central_store: "TBD"                     # future: shared db or git repo
+
+# ─────────────────────────────────────────────────────────────
+# Example Events
+# ─────────────────────────────────────────────────────────────
+
+examples:
+  - type: STATUS
+    id: "evt-001"
+    timestamp: "2026-05-18T10:30:00Z"
+    machine: "mac_studio"
+    user: "peretz"
+    agent: "claude"
+    session_id: "sess-abc123"
+    state: "active"
+    focus: "Slack coordination architecture"
+    files: ["docs/SLACK-AGENT-COORDINATION.md", "env.yaml"]
+
+  - type: CARE
+    id: "evt-002"
+    timestamp: "2026-05-18T11:00:00Z"
+    machine: "behemoth"
+    user: "boris"
+    agent: "claude"
+    session_id: "sess-xyz789"
+    type: "infusion"
+    date: "2026-05-20"
+    location: "MGH"
+    provider: "Dr. Smith"
+    notes: "Second cycle, expect fatigue days 3-5"
+    action_items: ["pack snacks", "bring tablet", "notify work"]
+
+  - type: OUTCOME
+    id: "evt-003"
+    timestamp: "2026-05-21T09:00:00Z"
+    machine: "behemoth"
+    user: "boris"
+    agent: "human"
+    session_id: "sess-xyz789"
+    ref_event_id: "evt-002"
+    result: "success"
+    notes: "Infusion went smoothly, snacks helped"
+    learnings: "Ginger candy better than crackers for nausea"

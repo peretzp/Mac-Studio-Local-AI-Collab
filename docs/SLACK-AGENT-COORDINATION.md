@@ -115,4 +115,18 @@ Slack channels provide:
 
 ---
 
+## Event Schema
+
+See `schemas/events.yaml` for the structured event types that flow through this system:
+- **STATUS** — agent lifecycle (active, parked, shutdown)
+- **HANDOFF** — context switches between agents
+- **PROPOSAL** — actions requiring human approval
+- **CARE** — health care coordination events
+- **OUTCOME** — human annotations of what worked (the learning signal)
+- **SYSTEM** — machine/service lifecycle
+
+Events flow: local log → Slack channel → central aggregation → fleet-wide learning.
+
+---
+
 *This architecture complements the file-based `agent-protocol.md` with a real-time Slack layer. The filesystem remains canonical; Slack provides visibility and human-friendly notifications.*
